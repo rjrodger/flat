@@ -15,8 +15,8 @@ module.exports = {
 
     var p = flat.parallel();
 
-    var p1 = p( function(bar){foo('1'+bar)} );
-    var p2 = p( function(bar){foo('2'+bar)} );
+    var p1 = p( function(bar){foo('1'+bar); p();} );
+    var p2 = p( function(bar){foo('2'+bar); p();} );
 
     p( null, function() {
       assert.eql( ['1a','2b'], bars );
@@ -27,6 +27,7 @@ module.exports = {
 
   },
 
+  /* wont work - all p or s calls need to be at same stack level
   callbacks_parallel: function(assert) {
     function foo(m,cb) {
       setTimeout( function(){cb(' foo:'+m)},100 );
@@ -49,7 +50,7 @@ module.exports = {
       assert.equal(' foo:a bar:b', msgs);
     });
   },
-
+  */
 
   basic_serial: function(assert) {
     var foos = [];
@@ -64,12 +65,15 @@ module.exports = {
     var s3 = s( function(foo){ bar('3'+foo); s() } );
 
     s(function() {
+      sys.puts('done: '+JSON.stringify(foos));
       assert.eql( ['1a','2b','3c'], foos ); s();
     })();
 
     setTimeout(function(){s3('c');},100);
     setTimeout(function(){s2('b');},150);
     setTimeout(function(){s1('a');},200);
+
+    s();
   },
 
 

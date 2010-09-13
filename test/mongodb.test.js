@@ -22,6 +22,7 @@ module.exports = {
     var dbx;
 
     db.open( s(function(err, db){
+      sys.puts('open');
       seq+='open ';
       dbx = refs.dbx = db;
       s();
@@ -56,8 +57,8 @@ module.exports = {
 
 
     s(function(){
-      collection.insert([{'name':'William Shakespeare', 'email':'william@shakespeare.com', 'age':587},
-			 {'name':'Jorge Luis Borges', 'email':'jorge@borges.com', 'age':123}], 
+      collection.insert([{'name':'AA William Shakespeare', 'email':'william@shakespeare.com', 'age':587},
+			 {'name':'BB Jorge Luis Borges', 'email':'jorge@borges.com', 'age':123}], 
 			function(err, docs) {
 			  docs.forEach(function(doc) {
 			    sys.puts(sys.inspect(doc));
