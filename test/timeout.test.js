@@ -59,6 +59,7 @@ module.exports = {
     }
 
     var s = flat.serial();
+    sys.puts('CHAIN:'+s.chain);
 
     var s1 = s( function(foo){ bar('1'+foo); s() } );
     var s2 = s( function(foo){ bar('2'+foo); s() } );
@@ -76,6 +77,24 @@ module.exports = {
     s();
   },
 
+
+  chain_serial: function(assert) {
+    var s = flat.serial();
+    var m = '';
+
+    s.chain(
+      function(){ m+='1';s();}
+    )(
+      function(){ m+='2';s();}
+    )(
+      function(){ m+='3';s();}
+    )(
+      function() {
+	sys.puts(m);
+	assert.equal('123',m);
+      }
+    );
+  },
 
 
   sequence_serial: function(assert) {
