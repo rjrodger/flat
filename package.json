@@ -1,0 +1,26 @@
+{
+  "name": "flat",
+  "version": "1.0.0",
+  "description": "Prerelease. Take a look at the unit tests for an idea of how flat will be used.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rjrodger/flat.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rjrodger/flat/issues"
+  },
+  "homepage": "https://github.com/rjrodger/flat",
+  "dependencies": {
+    "docpad": "~6.78.1",
+    "docpad-plugin-ghpages": "~2.4.4"
+  }
+}
